@@ -23,6 +23,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class CartItem extends CartItemPo{
 
-    private Object product;
+    private Product product;
 
 }

@@ -18,8 +18,8 @@ public class CollectService {
         return collectDao.addCollect(collectItem);
     }
 
-    public void deleteCollectById(Integer id) {
-         collectDao.deleteCollectById(id);
+    public Integer deleteCollectById(Integer id) {
+         return collectDao.deleteCollectById(id);
     }
 
     public Object listCollectByCodition(Integer userId)

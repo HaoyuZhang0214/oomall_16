@@ -18,11 +18,31 @@ public class AddressDao {
     AddressMapper addressMapper;
 
 
+
+    private Address toAddress(AddressPo addressPo) {
+        Address address = new Address();
+        address.setAddressDetail(addressPo.getAddressDetail());
+        address.setBeDefault(addressPo.getBeDefault());
+        address.setBeDeleted(addressPo.getBeDeleted());
+        address.setCityId(addressPo.getCityId());
+        address.setConsignee(addressPo.getConsignee());
+        address.setCountyId(addressPo.getCountyId());
+        address.setGmtCreate(addressPo.getGmtCreate());
+        address.setGmtModified(address.getGmtModified());
+        address.setId(addressPo.getId());
+        address.setMobile(addressPo.getMobile());
+        address.setPostalCode(addressPo.getPostalCode());
+        address.setProvinceId(addressPo.getProvinceId());
+        address.setUserId(addressPo.getUserId());
+        return address;
+    }
+
+
     public List<Address> getAllUserAddress(@RequestParam Integer userId, @RequestParam String name) {
         List<AddressPo> addressPoList = addressMapper.getAllUserAddress(userId, name);
         List<Address> addresses = null;
         for(AddressPo addressPo: addressPoList) {
-            Address address = (Address) addressPo;
+            Address address = toAddress(addressPo);
             addresses.add(address);
         }
         return addresses;
@@ -33,7 +53,7 @@ public class AddressDao {
         List<AddressPo> addressPoList = addressMapper.getAllAddressById(userId);
         List<Address> addresses = null;
         for(AddressPo addressPo: addressPoList) {
-            Address address = (Address) addressPo;
+            Address address = toAddress(addressPo);
             addresses.add(address);
         }
         return addresses;
@@ -49,14 +69,14 @@ public class AddressDao {
             return null;
     }
 
-    public Address getAddressById(@RequestParam Integer id) {
+    public Address getAddressById(Integer id) {
 
         AddressPo addressPo = addressMapper.getAddressById(id);
-        Address address = (Address) addressPo;
+        Address address = toAddress(addressPo);
         return address;
     }
 
-    public AddressPo editAddress(@RequestParam Integer id, @RequestBody AddressPo addressPo) {
+    public AddressPo editAddress( Integer id,  AddressPo addressPo) {
         addressPo.setId(id);
         addressPo.setGmtModified(LocalDateTime.now());
         if(addressMapper.editAddress(addressPo)>0) {

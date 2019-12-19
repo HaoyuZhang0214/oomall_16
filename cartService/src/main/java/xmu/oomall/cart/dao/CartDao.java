@@ -18,14 +18,9 @@ public class CartDao {
     @Autowired
     private CartMapper cartMapper;
 
-    public List<CartItem> listAllCartItems(@RequestParam Integer userId) {
-        List<CartItem> cartItemList = null;
+    public List<CartItemPo> listAllCartItems(@RequestParam Integer userId) {
         List<CartItemPo> cartItemPoList = cartMapper.listAllCartItems(userId);
-        for(CartItemPo cartItemPo : cartItemPoList) {
-            CartItem cartItem = (CartItem) cartItemPo;
-            cartItemList.add(cartItem);
-        }
-        return cartItemList;
+        return cartItemPoList;
     }
 
     public CartItemPo addItem(@RequestBody CartItemPo cartItem) {
@@ -87,7 +82,7 @@ public class CartDao {
         if(cartItem1==null)
             return null;
         Integer num = cartItem1.getNumber();
-        cartItem1.setNumber(num+cartItem.getNumber());
+        cartItem1.setNumber(cartItem.getNumber());
         cartItem1.setGmtModified(LocalDateTime.now());
         if(cartMapper.updateItem(cartItem1)>0)
             return cartItem1;

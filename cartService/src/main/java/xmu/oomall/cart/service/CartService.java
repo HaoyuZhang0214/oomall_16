@@ -12,7 +12,7 @@ import java.util.List;
 public interface CartService {
 
 
-    public List<CartItem> listAllCartItems(@RequestParam Integer userId);
+    public List<CartItemPo> listAllCartItems(@RequestParam Integer userId);
 
     public CartItemPo addItem(@RequestBody CartItemPo cartItem);
 

@@ -20,7 +20,7 @@ public interface CollectMapper {
      */
     void addCollect(CollectItemPo collectItem);
 
-    void deleteCollectById(Integer id);
+    Integer deleteCollectById(Integer id);
 
     List<CollectItemPo> listCollectByCodition(Integer userId);
 

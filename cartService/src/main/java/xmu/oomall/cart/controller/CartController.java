@@ -49,7 +49,7 @@ public class CartController {
 
         Integer userId = 1;
 
-        List<CartItem> cartItemList= cartService.listAllCartItems(userId);
+        List<CartItemPo> cartItemList= cartService.listAllCartItems(userId);
         int page_count=cartItemList.size()/limit;
         int remain=cartItemList.size()%limit;
         if(remain>0)
@@ -66,10 +66,10 @@ public class CartController {
                 cartItemList=cartItemList.subList((page-1)*limit,page*limit);
             }
         }
-//        if(cartItemList==null)
-//            return ResponseUtil.fail(730,"购物车记录不存在");
-//        else
-        return ResponseUtil.ok(cartItemList);
+        if(cartItemList==null)
+            return ResponseUtil.fail(730,"购物车记录不存在");
+        else
+            return ResponseUtil.ok(cartItemList);
 
     }
 
@@ -90,11 +90,11 @@ public class CartController {
 
     public Object getUserCart(@PathVariable Integer userId) {
 
-        List<CartItem> cartItemList= cartService.listAllCartItems(userId);
+        List<CartItemPo> cartItemList= cartService.listAllCartItems(userId);
         if(cartItemList==null)
             return ResponseUtil.fail(730,"购物车记录不存在");
         else
-        return ResponseUtil.ok(cartItemList);
+            return ResponseUtil.ok(cartItemList);
 
     }
 

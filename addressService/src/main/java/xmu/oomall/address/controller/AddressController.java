@@ -183,7 +183,7 @@ public class AddressController {
 
      */
 
-    @PostMapping("/addresses/{id}")
+    @PutMapping("/addresses/{id}")
 
     public Object editAddress(@PathVariable Integer id, @RequestBody AddressPo addressPo) {
 

@@ -41,8 +41,7 @@ public class CollectDao {
     }
 
     public Integer deleteCollectById(Integer id){
-        collectMapper.deleteCollectById(id);
-        return id;
+        return collectMapper.deleteCollectById(id);
     }
    /* public List<CollectItemPo> listCollectByCodition()
     {

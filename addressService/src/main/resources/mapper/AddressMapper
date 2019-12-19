@@ -13,13 +13,13 @@
 
     <select id="getAllAddressById" resultType="xmu.oomall.address.domain.AddressPo">
 
-        select * from oomall_address where user_id=#{userId} and is_deleted=0;
+        select * from oomall_address where user_id=#{userId} and is_deleted=false;
 
     </select>
 
     <select id="getAddressById" resultType="xmu.oomall.address.domain.AddressPo" parameterType="Integer">
 
-        select * from oomall_address where id=#{Id} and is_deleted=0;
+        select * from oomall_address where id=#{Id} and is_deleted=false;
 
     </select>
 
@@ -37,7 +37,7 @@
 
     <update id="deleteAddress" parameterType="Integer">
 
-        update oomall_address set is_deleted=1 where id=#{id};
+        update oomall_address set is_deleted=true where id=#{id};
 
     </update>
 

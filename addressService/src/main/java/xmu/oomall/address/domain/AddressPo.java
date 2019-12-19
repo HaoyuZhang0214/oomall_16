@@ -101,7 +101,7 @@ public class AddressPo {
 
      */
 
-    private boolean beDefault;
+    private Boolean beDefault;
 
 
 

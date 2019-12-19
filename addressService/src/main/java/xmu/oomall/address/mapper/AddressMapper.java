@@ -12,16 +12,16 @@ import java.util.List;
 @Repository
 public interface AddressMapper {
 
-    public List<AddressPo> getAllUserAddress(@RequestParam Integer userId, @RequestParam String name);
+    public List<AddressPo> getAllUserAddress(Integer userId, String name);
 
-    public List<AddressPo> getAllAddressById(@RequestParam Integer userId);
+    public List<AddressPo> getAllAddressById(Integer userId);
 
     public Integer addAddress(AddressPo addressPo);
 
-    public AddressPo getAddressById(@RequestBody Integer id);
+    public AddressPo getAddressById(Integer id);
 
-    public Integer editAddress(@RequestBody AddressPo addressPo);
+    public Integer editAddress(AddressPo addressPo);
 
-    public Integer deleteAddress(@RequestParam Integer id);
+    public Integer deleteAddress( Integer id);
 
 }

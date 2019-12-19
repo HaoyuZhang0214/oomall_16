@@ -47,7 +47,7 @@ public class CollectController {
      * <p>
      * 如果商品没有收藏，则添加收藏；如果商品已经收藏，则删除收藏状态。
      *
-     * @param userId 用户ID
+     *
      * @param body   请求内容，{ type: xxx, valueId: xxx }
      * @return 操作结果
      */
@@ -62,7 +62,9 @@ public class CollectController {
 
     @DeleteMapping("/collections/{id}")
     public Object update( @PathVariable Integer id) {
-        collectService.deleteCollectById(id);
-        return ResponseUtil.ok();
+        if(collectService.deleteCollectById(id)>0)
+            return ResponseUtil.ok();
+        else
+            return ResponseUtil.fail();
     }
 }

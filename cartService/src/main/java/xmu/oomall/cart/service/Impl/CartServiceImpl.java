@@ -24,7 +24,7 @@ public class CartServiceImpl implements CartService {
     private CartDao cartDao;
 
     @Override
-    public List<CartItem> listAllCartItems(@RequestParam Integer userId) {
+    public List<CartItemPo> listAllCartItems(@RequestParam Integer userId) {
         return cartDao.listAllCartItems(userId);
     }
 
