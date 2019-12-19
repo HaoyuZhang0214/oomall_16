@@ -8,7 +8,7 @@ import xmu.oomall.aftersale.mapper.AfterSaleMapper;
 import java.util.List;
 
 /**
- * @author 水木子
+ * @author
  */
 @Repository
 public class AfterSaleDao {
