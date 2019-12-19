@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import xmu.oomall.aftersale.domain.AfterSale;
-
-import xmu.oomall.aftersale.service.AfterSaleService;
+import xmu.oomall.aftersale.domain.AfterSaleService;
 
 import xmu.oomall.aftersale.util.ResponseUtil;
 
@@ -36,13 +34,13 @@ import java.util.List;
 
 @RequestMapping("/afterSaleService")
 
-public class AfterSaleController {
+public class AfterSaleSerServiceController {
 
 
 
     @Autowired
 
-    private AfterSaleService afterSaleService;
+    private xmu.oomall.aftersale.service.AfterSaleService afterSaleService;
 
 
 
@@ -64,11 +62,11 @@ public class AfterSaleController {
 
         //用户服务网关已经拦截了非法请求，因此这里不需要再次验证
 
-        List<AfterSale> afterSales = afterSaleService.findAfterSales(userId);
+        List<AfterSaleService> afterSaleServices = afterSaleService.findAfterSales(userId);
 
-        if(afterSales!=null){
+        if(afterSaleServices !=null){
 
-            return ResponseUtil.okList(afterSales);
+            return ResponseUtil.okList(afterSaleServices);
 
         }else {
 
@@ -102,13 +100,13 @@ public class AfterSaleController {
 
             //查询结果
 
-            AfterSale afterSale = afterSaleService.findAfterSaleById(id);
+            AfterSaleService afterSaleService = this.afterSaleService.findAfterSaleById(id);
 
             //查询结果不为空，返回成功状态码及数据
 
-            if(afterSale!=null) {
+            if(afterSaleService !=null) {
 
-                return ResponseUtil.ok(afterSale);
+                return ResponseUtil.ok(afterSaleService);
 
             }else{   //查询结果为空，返回参数不对
 
@@ -143,21 +141,21 @@ public class AfterSaleController {
 
     public Object adminUpdateAfterSaleService(@PathVariable Integer id,
 
-                                              @RequestBody AfterSale afterSale) {
+                                              @RequestBody AfterSaleService afterSaleService) {
 
         //id和afterSale都不为空，才能继续进行操作
 
-        if(id!=null && afterSale!=null) {
+        if(id!=null && afterSaleService !=null) {
 
-            afterSale.setId(id);
+            afterSaleService.setId(id);
 
             //afterSale1 是修改后的售后记录
 
-            AfterSale afterSale1 = afterSaleService.adminUpdateAfterSale(afterSale);
+            AfterSaleService afterSaleService1 = this.afterSaleService.adminUpdateAfterSale(afterSaleService);
 
-            if (afterSale1 != null) {
+            if (afterSaleService1 != null) {
 
-                return ResponseUtil.ok(afterSale1);
+                return ResponseUtil.ok(afterSaleService1);
 
             } else {
 
@@ -201,11 +199,11 @@ public class AfterSaleController {
 
         if(userId!=null) {
 
-            List<AfterSale> afterSales = afterSaleService.findAfterSalesByUserId(userId);
+            List<AfterSaleService> afterSaleServices = afterSaleService.findAfterSalesByUserId(userId);
 
-            if (afterSales != null) {
+            if (afterSaleServices != null) {
 
-                return ResponseUtil.okList(afterSales);
+                return ResponseUtil.okList(afterSaleServices);
 
             } else {
                 return ResponseUtil.ok(null);
@@ -241,13 +239,13 @@ public class AfterSaleController {
 
         //userId由用户服务提供的方法获得  httpServletRequest参数
 
-        AfterSale afterSale = afterSaleService.findAfterSaleById(id);
+        AfterSaleService afterSaleService = this.afterSaleService.findAfterSaleById(id);
 
-        if(userId.equals(afterSale.getUserId())){       //访问的是自己的售后服务
+        if(userId.equals(afterSaleService.getUserId())){       //访问的是自己的售后服务
 
-            if(!afterSale.getBeDeleted()){        //没有被删除
+            if(!afterSaleService.getBeDeleted()){        //没有被删除
 
-                return ResponseUtil.ok(afterSale);
+                return ResponseUtil.ok(afterSaleService);
 
             }else{                                   //删除了
 
@@ -281,7 +279,7 @@ public class AfterSaleController {
 
      * userId    这里应该不是写进afterSale中的，由用户服务提供的方法获得
 
-     * @param afterSale
+     * @param afterSaleService
 
      * @return
 
@@ -289,15 +287,15 @@ public class AfterSaleController {
 
     @PostMapping("/afterSaleServices")
 
-    public Object userApplyAfterSaleService(@RequestBody AfterSale afterSale) {
+    public Object userApplyAfterSaleService(@RequestBody AfterSaleService afterSaleService) {
 
         //userId由用户服务提供的方法获得
 
         Integer userId = 1;
 
-        if(userId!=null && afterSale!=null) {
+        if(userId!=null && afterSaleService !=null) {
 
-            Integer type = afterSale.getType();
+            Integer type = afterSaleService.getType();
 
             if(type<0 || type>1){
 
@@ -305,7 +303,7 @@ public class AfterSaleController {
 
             }
 
-            Integer goodsType = afterSale.getGoodsType();
+            Integer goodsType = afterSaleService.getGoodsType();
 
             if(goodsType<1 || goodsType >4){
 
@@ -315,13 +313,13 @@ public class AfterSaleController {
 
             //设置userId
 
-            afterSale.setUserId(userId);
+            afterSaleService.setUserId(userId);
 
-            AfterSale afterSale1 = afterSaleService.insertAfterSale(afterSale);
+            AfterSaleService afterSaleService1 = this.afterSaleService.insertAfterSale(afterSaleService);
 
-            if(afterSale1!=null){
+            if(afterSaleService1 !=null){
 
-                return ResponseUtil.ok(afterSale1);    //返回申请后的售后记录
+                return ResponseUtil.ok(afterSaleService1);    //返回申请后的售后记录
 
             }else{
 
@@ -359,7 +357,7 @@ public class AfterSaleController {
 
      * @param id
 
-     * @param afterSale
+     * @param afterSaleService
 
      * @return
 
@@ -369,27 +367,27 @@ public class AfterSaleController {
 
     public Object userUpdateAfterSaleService(@PathVariable Integer id,
 
-                                             @RequestBody AfterSale afterSale) {
+                                             @RequestBody AfterSaleService afterSaleService) {
 
         //应该也要验证用户身份，通过token获取userId
 
-        if(id!=null && afterSale!=null) {
+        if(id!=null && afterSaleService !=null) {
 
-            afterSale.setId(id);
+            afterSaleService.setId(id);
 
             //在此处将userId写进对象afterSale中
 
-            AfterSale afterSale1 = afterSaleService.updateAfterSale(afterSale);
+            AfterSaleService afterSaleService1 = this.afterSaleService.updateAfterSale(afterSaleService);
 
             //afterSale1 是修改后的售后记录
 
-            if(afterSale1!=null) {
+            if(afterSaleService1 !=null) {
 
                 //比较afterSale 的userId 和afterSale1 的userId ，相同返回修改后的售后记录
 
-                if(afterSale.getUserId().equals(afterSale1.getUserId())) {
+                if(afterSaleService.getUserId().equals(afterSaleService1.getUserId())) {
 
-                    return ResponseUtil.ok(afterSale1);
+                    return ResponseUtil.ok(afterSaleService1);
 
                 }else{
 

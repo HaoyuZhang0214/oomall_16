@@ -10,7 +10,7 @@ import java.util.Objects;
  * @Modified By:
  **/
 
-public class AfterSale {
+public class AfterSaleService {
     private Integer id;
     /**
      *商品类型，1普通商品，2预售商品，3团购商品，4分享商品
@@ -80,7 +80,7 @@ public class AfterSale {
     public boolean equals(Object o) {
         if (this == o) {return true;}
         if (o == null || getClass() != o.getClass()) {return false;}
-        AfterSale that = (AfterSale) o;
+        AfterSaleService that = (AfterSaleService) o;
         return Objects.equals(id, that.id);
     }
 

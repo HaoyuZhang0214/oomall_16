@@ -1,10 +1,10 @@
-package xmu.oomall.aftersale;
+package xmu.oomall.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AftersaleApplicationTests {
+class GatewayApplicationTests {
 
     @Test
     void contextLoads() {

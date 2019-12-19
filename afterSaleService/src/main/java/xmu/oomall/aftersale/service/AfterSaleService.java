@@ -1,7 +1,6 @@
 package xmu.oomall.aftersale.service;
 
 import org.springframework.stereotype.Service;
-import xmu.oomall.aftersale.domain.AfterSale;
 
 import java.util.List;
 
@@ -15,17 +14,17 @@ public interface AfterSaleService {
      * 获取所有的afterSale
      * @return
      */
-    public List<AfterSale> findAfterSales(Integer userId);
+    public List<xmu.oomall.aftersale.domain.AfterSaleService> findAfterSales(Integer userId);
 
-    public AfterSale findAfterSaleById(Integer id);
+    public xmu.oomall.aftersale.domain.AfterSaleService findAfterSaleById(Integer id);
 
-    public List<AfterSale> findAfterSalesByUserId(Integer userId);
+    public List<xmu.oomall.aftersale.domain.AfterSaleService> findAfterSalesByUserId(Integer userId);
 
-    public AfterSale adminUpdateAfterSale(AfterSale afterSale);
+    public xmu.oomall.aftersale.domain.AfterSaleService adminUpdateAfterSale(xmu.oomall.aftersale.domain.AfterSaleService afterSaleService);
 
-    public AfterSale updateAfterSale(AfterSale afterSale);
+    public xmu.oomall.aftersale.domain.AfterSaleService updateAfterSale(xmu.oomall.aftersale.domain.AfterSaleService afterSaleService);
 
-    public AfterSale insertAfterSale(AfterSale afterSale);
+    public xmu.oomall.aftersale.domain.AfterSaleService insertAfterSale(xmu.oomall.aftersale.domain.AfterSaleService afterSaleService);
 
     public int deleteAfterSale(Integer id);
 

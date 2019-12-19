@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="xmu.oomall.aftersale.mapper.AfterSaleMapper">
+<mapper namespace="xmu.oomall.aftersale.mapper.AfterSaleServiceMapper">
     
-    <resultMap id="AfterSale" type="xmu.oomall.aftersale.domain.AfterSale">
+    <resultMap id="AfterSale" type="xmu.oomall.aftersale.domain.AfterSaleService">
         <result property="beApplied" column="is_applied"/>
         <result property="beDeleted" column="is_deleted"/>
         <result property="statusCode" column="status"/>
@@ -40,7 +40,7 @@
         where user_id=#{userId} and is_deleted=0;
     </select>
 
-    <update id="updateAfterSale" parameterType="xmu.oomall.aftersale.domain.AfterSale">
+    <update id="updateAfterSale" parameterType="xmu.oomall.aftersale.domain.AfterSaleService">
         update oomall_aftersales_service
         set
             gmt_modified=#{gmtModified},
@@ -57,7 +57,7 @@
         where id=#{id} ;
     </update>
 
-    <insert id="insertAfterSale" parameterType="xmu.oomall.aftersale.domain.AfterSale" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertAfterSale" parameterType="xmu.oomall.aftersale.domain.AfterSaleService" useGeneratedKeys="true" keyProperty="id">
         insert into oomall_aftersales_service(
             user_id,
             gmt_create,
