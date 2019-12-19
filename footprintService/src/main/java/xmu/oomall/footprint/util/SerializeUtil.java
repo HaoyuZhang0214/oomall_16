@@ -2,7 +2,7 @@ package xmu.oomall.footprint.util;
 
 import java.io.*;
 
-public class SerializeUtil {
+public class  SerializeUtil {
 
     // 序列化
     public static byte[] serialize(Object object) {

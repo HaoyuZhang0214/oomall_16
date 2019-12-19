@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     username: root
-    password:
-    url: jdbc:mysql://localhost:3306/oomall?serverTimezone=Asia/Shanghai
+    password: 980710
+    url: jdbc:mysql://localhost:3306/oolitemall?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
   #domain����İ�
