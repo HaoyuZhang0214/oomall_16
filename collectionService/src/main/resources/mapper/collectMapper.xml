@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.oomall.collection.mapper.CollectMapper">
+
+
+    <insert id="addCollect" parameterType="xmu.oomall.collection.domain.CollectItemPo" useGeneratedKeys="true" keyProperty="id">
+        insert into oomall_collect_item(goods_id,user_id,gmt_create,gmt_modified) values(#{goodsId},#{userId},#{gmtCreate},#{gmtModified});
+    </insert>
+
+    <delete id="deleteCollectById" parameterType="Integer">
+        delete from oomall_collect_item where id =#{id};
+    </delete>
+
+    <select id="listCollectByCodition" resultType="xmu.oomall.collection.domain.CollectItemPo" parameterType="Integer">
+        select * from oomall_collect_item where user_id =#{userId};
+    </select>
+
+    <select id="Goods" resultType="xmu.oomall.collection.domain.GoodsPo" parameterType="Integer">
+        select * from oomall_goods where id = #{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/oomall?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  #domain����İ�
+  type-aliases-package: xmu.oomall.cart.domain
+  #mapper��xml���ڵ�λ��
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #�Զ���SQL�в�����Ĵ��»��ߵ��ֶΣ�ת��Ϊ�շ��־����ȥƥ�����е�����
+    map-underscore-to-camel-case: true
