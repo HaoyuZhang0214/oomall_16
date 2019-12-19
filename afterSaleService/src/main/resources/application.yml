@@ -2,8 +2,8 @@ server:
   port: 8085
 
 mybatis:
-  type-aliases-package: xmu.ooad.domain
-  mapper-locations: classpath:xmu.ooad.mapper/*.xml
+  type-aliases-package: xmu.oomall.aftersale.domain
+  mapper-locations: classpath:xmu.oomall.aftersale.mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
 
