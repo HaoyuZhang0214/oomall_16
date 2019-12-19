@@ -12,7 +12,20 @@
     <artifactId>oomall_16</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>oomall_16</name>
+    <packaging>pom</packaging>
     <description>parent module for oomall</description>
+
+    <modules>
+        <module>afterSaleService</module>
+        <module>cartService</module>
+        <module>addressService</module>
+        <module>addressService</module>
+        <module>collectionService</module>
+        <module>commentService</module>
+        <module>footprintService</module>
+        <module>topicService</module>
+
+    </modules>
 
     <properties>
         <java.version>11</java.version>
