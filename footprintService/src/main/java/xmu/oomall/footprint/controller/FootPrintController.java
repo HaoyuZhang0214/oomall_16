@@ -41,7 +41,8 @@ public class FootPrintController {
             reObj=ResponseUtil.ok(footprintItemList);
         }
 
-        return reObj;//footPrintService.findFootPrintItemByUserIdAndGoodsId(userId, goodsId, page, limit, newSort, order);
+        return reObj;
+        //footPrintService.findFootPrintItemByUserIdAndGoodsId(userId, goodsId, page, limit, newSort, order);
     }
 
     /**
@@ -50,6 +51,7 @@ public class FootPrintController {
      * @param userId 用户ID
      * @param id   请求内容， { id: xxx }
      * @return
+     * 此方法已被弃用
      */
     @DeleteMapping("/footprints/{id}")
     public Object delete(@PathVariable("id") String id,Integer userId) {
@@ -86,7 +88,8 @@ public class FootPrintController {
         } else {
             reObj=ResponseUtil.ok(footprintItemList);
         }
-        return reObj;//footPrintService.findFootPrintItemByUserId(userId, page, limit);
+        return reObj;
+        //footPrintService.findFootPrintItemByUserId(userId, page, limit);
     }
 
 

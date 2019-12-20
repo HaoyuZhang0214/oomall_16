@@ -9,8 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:mybatis/mapping/*.xml
-  type-aliases-package: xmu.good.oomall.domain
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: xmu.oomall.footprint.domain
   configuration:
     #自动将SQL中查出来的带下划线的字段，转换为驼峰标志，再去匹配类中的属性
     map-underscore-to-camel-case: true

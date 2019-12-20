@@ -240,6 +240,7 @@ public class AfterSaleSerServiceController {
         //userId由用户服务提供的方法获得  httpServletRequest参数
 
         AfterSaleService afterSaleService = this.afterSaleService.findAfterSaleById(id);
+        System.out.println(afterSaleService.toString());
 
         if(userId.equals(afterSaleService.getUserId())){       //访问的是自己的售后服务
 

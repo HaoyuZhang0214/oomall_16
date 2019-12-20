@@ -7,6 +7,9 @@ import xmu.oomall.footprint.domain.FootprintItemPo;
 
 import java.util.List;
 
+/**
+ * @author Chaney
+ */
 @Service
 public interface FootPrintService {
     List<FootprintItem> findFootPrintItemByUserIdAndGoodsId(Integer userId, Integer goodsId, Integer page, Integer limit);
