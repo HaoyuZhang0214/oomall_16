@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = true)
 public class FootprintItem extends FootprintItemPo {
+
     public FootprintItem(FootprintItemPo footprintItemPo)
     {
         this.setId(footprintItemPo.getId());
@@ -23,11 +24,5 @@ public class FootprintItem extends FootprintItemPo {
         this.setUserId(footprintItemPo.getUserId());
         this.setGmtCreate(footprintItemPo.getGmtCreate());
     }
-
-    public FootprintItem()
-    {
-
-    }
-
     private GoodsPo goodsPo;
 }

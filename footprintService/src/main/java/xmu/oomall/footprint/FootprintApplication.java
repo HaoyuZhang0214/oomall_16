@@ -3,13 +3,15 @@ package xmu.oomall.footprint;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@MapperScan(basePackages = "xmu.oomall.footprint.mapper")
+
 @SpringBootApplication
+@EnableEurekaClient
 public class FootprintApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FootprintApplication.class, args);
-    }
 
+    }
 }

@@ -7,6 +7,9 @@ import xmu.oomall.footprint.mapper.FootPrintMapper;
 
 import java.util.List;
 
+/**
+ * @author Chaney
+ */
 @Repository
 public class FootPrintDao {
     @Autowired

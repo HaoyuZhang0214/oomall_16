@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.oomall.ad.mapper.AdMapper">
+
+    <select id="getAds" resultType="xmu.oomall.ad.domain.Ad">
+            select * from oomall_ad where is_deleted=false;
+    </select>
+
+    <select id="adGetAds" resultType="xmu.oomall.ad.domain.Ad" parameterType="xmu.oomall.ad.domain.Ad">
+        select * from oomall_ad where name =#{name}  and content =#{content} and is_deleted=false;
+    </select>
+
+    <select id="adGetAds3" resultType="xmu.oomall.ad.domain.Ad" parameterType="xmu.oomall.ad.domain.Ad">
+        select * from oomall_ad where content =#{content} and is_deleted=false;
+    </select>
+
+    <select id="adGetAds2" resultType="xmu.oomall.ad.domain.Ad" parameterType="xmu.oomall.ad.domain.Ad">
+        select * from oomall_ad where name =#{name} and is_deleted=false;
+    </select>
+
+    <insert id="addAd" parameterType="xmu.oomall.ad.domain.Ad" useGeneratedKeys="true" keyProperty="id">
+        insert into oomall_ad(link,name,content,pic_url,is_default,is_enabled,start_time,end_time,gmt_create,gmt_modified,is_deleted)
+         values(#{link},#{name},#{content},#{picUrl},#{beDefault},#{beEnabled},#{startTime},#{endTime},#{gmtCreate},#{gmtModified},#{beDeleted});
+    </insert>
+
+    <select id="getAdById" resultType="xmu.oomall.ad.domain.Ad" parameterType="Integer">
+        select * from oomall_ad where id=#{id} and is_deleted=false;
+    </select>
+    
+    <update id="updateAdById" parameterType="xmu.oomall.ad.domain.Ad">
+        update oomall_ad set link =#{link},name=#{name},content=#{content},pic_url=#{picUrl},is_default=#{beDefault},is_enabled=#{beEnabled},start_time=#{startTime},end_time=#{endTime},gmt_modified=#{gmtModified} where id=#{id};
+    </update>
+
+    <update id="deleteAd" parameterType="Integer">
+        update oomall_ad set is_deleted =true where id=#{id} and is_deleted=false;
+    </update>
+
+</mapper>

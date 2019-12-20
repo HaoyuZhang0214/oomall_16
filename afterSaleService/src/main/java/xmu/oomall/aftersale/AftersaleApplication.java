@@ -2,12 +2,14 @@ package xmu.oomall.aftersale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-public class AftersaleApplication {
+@EnableEurekaClient
+public class AftersaleServideApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AftersaleApplication.class, args);
+        SpringApplication.run(AftersaleServideApplication.class, args);
     }
 
 }

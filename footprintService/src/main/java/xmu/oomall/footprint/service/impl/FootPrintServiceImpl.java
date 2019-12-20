@@ -39,7 +39,8 @@ public class FootPrintServiceImpl implements FootPrintService {
 
             footprintItems.add(footprintItem);
         }
-        return footprintItems;//footPrintDao.findFootPrintItemByUserIdAndGoodsId(userId, goodsId, page, limit, sort, order);
+        return footprintItems;
+        //footPrintDao.findFootPrintItemByUserIdAndGoodsId(userId, goodsId, page, limit, sort, order);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class FootPrintServiceImpl implements FootPrintService {
         List<FootprintItem> footprintItemList=new ArrayList<>();
         for(int i=0;i<footprintItemPoList.size();i++)
         {
-            FootprintItem footprintItem=new FootprintItem(footprintItemPoList.get(i));
+            FootprintItem footprintItem=new FootprintItem(footprintItemList.get(i));
 
 
             /**

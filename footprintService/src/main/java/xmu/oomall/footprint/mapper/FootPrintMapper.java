@@ -9,6 +9,9 @@ import xmu.oomall.footprint.domain.FootprintItemPo;
 
 import java.util.List;
 
+/**
+ * @author Chaney
+ */
 @Mapper
 @Repository
 public interface FootPrintMapper {
