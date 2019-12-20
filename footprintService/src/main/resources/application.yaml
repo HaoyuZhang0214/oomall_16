@@ -1,22 +1,36 @@
 server:
   port: 8081
 
+mybatis:
+  type-aliases-package: xmu.oomall.footprint.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eurekaserver/
+
 spring:
+  application:
+    name: FOOTPRINT_SERVICE
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oolitemall?serverTimezone=Asia/Shanghai
     username: root
     password: 980710
-    url: jdbc:mysql://localhost:3306/oolitemall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: xmu.oomall.footprint.domain
-  configuration:
-    #自动将SQL中查出来的带下划线的字段，转换为驼峰标志，再去匹配类中的属性
-    map-underscore-to-camel-case: true
-#showSql
-logging:
-  level:
-    com:
-      example:
-        mapper : debug
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100
+      validation-query: select 1
