@@ -3,6 +3,9 @@ package xmu.oomall.collection;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author zhy
+ */
 @SpringBootApplication
 public class CollectionApplication {
 

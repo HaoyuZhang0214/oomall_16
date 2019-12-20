@@ -8,6 +8,9 @@ import xmu.oomall.collection.domain.GoodsPo;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Mapper
 @Repository
 public interface CollectMapper {
@@ -16,14 +19,29 @@ public interface CollectMapper {
     /**
      * create a brand
      *
-     * @param
+     * @param collectItem
      * @return id
      */
     Integer addCollect(CollectItemPo collectItem);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     Integer deleteCollectById(Integer id);
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     List<CollectItemPo> listCollectByCodition(Integer userId);
 
-    GoodsPo Goods(Integer id);
+    /**
+     *
+     * @param id
+     * @return
+     */
+    GoodsPo goods(Integer id);
 }

@@ -1,6 +1,8 @@
 package xmu.oomall.topic.dao;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import xmu.oomall.topic.domain.Topic;
@@ -14,8 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Repository
 public class TopicDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(TopicDao.class);
+
     @Autowired
     private TopicMapper topicMapper;
 
@@ -23,8 +31,8 @@ public class TopicDao {
         List<TopicPo> listTopic=topicMapper.getTopic();
         List<Topic> listTopic2=new ArrayList<Topic>();
         for(TopicPo topicPo:listTopic){
-            Topic A=getTopic(topicPo);
-            listTopic2.add(A);
+            Topic a=getTopic(topicPo);
+            listTopic2.add(a);
         }
         return listTopic2;
     }
@@ -32,7 +40,10 @@ public class TopicDao {
 
     public Object getTopicById(Integer id){
         TopicPo topicPo=topicMapper.getTopicById(id);
-        if(topicPo==null)  return ResponseUtil.fail(650,"该话题是无效话题");
+        if(topicPo==null)  {
+            logger.debug("该话题是无效话题");
+            return ResponseUtil.getFail();
+        }
         return ResponseUtil.ok(getTopic(topicPo));
     }
 
@@ -52,18 +63,20 @@ public class TopicDao {
     private Topic getTopic(TopicPo topicPo){
         String url=topicPo.getPicUrlList();
         String url1=url.substring(13,url.length()-2);
-        String a[]=url1.split(",");
+        String[] str =url1.split(",");
         List<String> urllist2=new ArrayList<String>();
-        for(int i=0;i<a.length;i++) urllist2.add(a[i]);
-        Topic A=new Topic();
-        A.setPictures(urllist2);
-        A.setBeDeleted(topicPo.getBeDeleted());
-        A.setContent(topicPo.getContent());
-        A.setGmtCreate(topicPo.getGmtCreate());
-        A.setGmtModified(topicPo.getGmtModified());
-        A.setId(topicPo.getId());
-        A.setPicUrlList(topicPo.getPicUrlList());
-        return A;
+        for(int i=0;i<str.length;i++)  {
+            urllist2.add(str[i]);
+        }
+        Topic a=new Topic();
+        a.setPictures(urllist2);
+        a.setBeDeleted(topicPo.getBeDeleted());
+        a.setContent(topicPo.getContent());
+        a.setGmtCreate(topicPo.getGmtCreate());
+        a.setGmtModified(topicPo.getGmtModified());
+        a.setId(topicPo.getId());
+        a.setPicUrlList(topicPo.getPicUrlList());
+        return a;
     }
 
 }

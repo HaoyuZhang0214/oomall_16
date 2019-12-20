@@ -8,7 +8,9 @@ import xmu.oomall.ad.util.ResponseUtil;
 
 import java.util.List;
 
-
+/**
+ * @author zhy
+ */
 @Repository
 public class AdDao {
 

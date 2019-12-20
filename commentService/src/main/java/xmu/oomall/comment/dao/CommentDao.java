@@ -7,64 +7,62 @@ import xmu.oomall.comment.domain.CommentPo;
 import xmu.oomall.comment.mapper.CommentMapper;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zhy
+ */
 @Repository
 public class CommentDao {
 
     @Autowired
     private CommentMapper commentMapper;
 
+    private Comment toComment(CommentPo commentPo) {
+        Comment comment = new Comment();
+        comment.setId(commentPo.getId());
+        comment.setBeDeleted(commentPo.getBeDeleted());
+        comment.setContent(commentPo.getContent());
+        comment.setGmtCreate(commentPo.getGmtCreate());
+        comment.setGmtModified(commentPo.getGmtModified());
+        comment.setProductId(commentPo.getProductId());
+        comment.setStar(commentPo.getStar());
+        comment.setStatusCode(commentPo.getStatusCode());
+        comment.setUserId(commentPo.getUserId());
+
+        comment.setUser(commentMapper.getUserById(commentPo.getUserId()));
+        comment.setProductPo(commentMapper.getProductById(commentPo.getProductId()));
+        return comment;
+    }
+
     public CommentPo addProductComment(Integer id, CommentPo commentPo) {
         commentPo.setProductId(id);
         commentPo.setBeDeleted(false);
         commentPo.setGmtCreate(LocalDateTime.now());
         commentPo.setGmtModified(LocalDateTime.now());
-        if(commentMapper.addProductComment(commentPo)>0)
+        if(commentMapper.addProductComment(commentPo)>0) {
             return commentPo;
-        else
+        }
+        else {
             return null;
+        }
     }
 
     public List<Comment> getProductComment(Integer id) {
-        List<Comment> commentList = null;
+        List<Comment> commentList = new ArrayList<Comment>();
         List<CommentPo> commentPoList = commentMapper.getProductComment(id);
         for(CommentPo commentPo: commentPoList) {
-            Comment comment = new Comment();
-            comment.setId(commentPo.getId());
-            comment.setBeDeleted(commentPo.getBeDeleted());
-            comment.setContent(commentPo.getContent());
-            comment.setGmtCreate(commentPo.getGmtCreate());
-            comment.setGmtModified(commentPo.getGmtModified());
-            comment.setProductId(commentPo.getProductId());
-            comment.setStar(commentPo.getStar());
-            comment.setStatusCode(commentPo.getStatusCode());
-            comment.setUserId(commentPo.getUserId());
-
-            comment.setUser(commentMapper.getUserById(commentPo.getUserId()));
-            comment.setProductPo(commentMapper.getProductById(commentPo.getProductId()));
-            commentList.add(comment);
+            commentList.add(toComment(commentPo));
         }
         return commentList;
     }
 
     public List<Comment> getUserComment(Integer userId, Integer productId) {
-        List<Comment> commentList = null;
+        List<Comment> commentList = new ArrayList<Comment>();
         List<CommentPo> commentPoList = commentMapper.getUserComment(userId,productId);
         for(CommentPo commentPo: commentPoList) {
-            Comment comment = new Comment();
-            comment.setId(commentPo.getId());
-            comment.setBeDeleted(commentPo.getBeDeleted());
-            comment.setContent(commentPo.getContent());
-            comment.setGmtCreate(commentPo.getGmtCreate());
-            comment.setGmtModified(commentPo.getGmtModified());
-            comment.setProductId(commentPo.getProductId());
-            comment.setStar(commentPo.getStar());
-            comment.setStatusCode(commentPo.getStatusCode());
-            comment.setUserId(commentPo.getUserId());
-            comment.setUser(commentMapper.getUserById(commentPo.getUserId()));
-            comment.setProductPo(commentMapper.getProductById(commentPo.getProductId()));
-            commentList.add(comment);
+            commentList.add(toComment(commentPo));
         }
         return commentList;
     }
@@ -77,9 +75,12 @@ public class CommentDao {
     public CommentPo updateComment(Integer id, CommentPo commentPo) {
         commentPo.setId(id);
         commentPo.setGmtModified(LocalDateTime.now());
-        if(commentMapper.updateComment(commentPo)>0)
+        if(commentMapper.updateComment(commentPo)>0) {
             return commentPo;
-        else return null;
+        }
+        else {
+            return null;
+        }
     }
 
     public Integer deleteComment(Integer id) {

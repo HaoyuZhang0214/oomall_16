@@ -9,6 +9,9 @@ import xmu.oomall.topic.util.ResponseUtil;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author zhy
+ */
 @RestController
 @RequestMapping("/topicService")
 public class TopicController {
@@ -20,7 +23,7 @@ public class TopicController {
     @GetMapping("/admin/topics")
     public Object adGetTopic(@RequestParam(defaultValue = "1") Integer page,
                       @RequestParam(defaultValue = "10") Integer limit){
-        return ResponseUtil.ok(topicService.getTopic(page, limit));
+        return topicService.getTopic(page, limit);
     }
 
     @GetMapping("/admin/topics/{id}")
@@ -29,9 +32,9 @@ public class TopicController {
     }
 
     @GetMapping("/topics")
-    public Object GetTopic(@RequestParam(defaultValue = "1") Integer page,
+    public Object getTopic(@RequestParam(defaultValue = "1") Integer page,
                     @RequestParam(defaultValue = "10") Integer limit){
-        return ResponseUtil.ok(topicService.getTopic(page, limit));
+        return topicService.getTopic(page, limit);
     }
     @GetMapping("/topics/{id}")
     public Object getTopicById(@PathVariable Integer id){

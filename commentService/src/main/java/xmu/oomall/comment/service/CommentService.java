@@ -6,6 +6,9 @@ import xmu.oomall.comment.domain.CommentPo;
 
 import java.util.List;
 
+/**
+ * @author zhy
+ */
 @Service
 public interface CommentService {
 

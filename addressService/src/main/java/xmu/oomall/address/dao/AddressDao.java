@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zhy
+ */
 @Repository
 public class AddressDao {
 
@@ -64,10 +67,12 @@ public class AddressDao {
         addressPo.setBeDeleted(false);
         addressPo.setGmtCreate(LocalDateTime.now());
         addressPo.setGmtModified(LocalDateTime.now());
-        if(addressMapper.addAddress(addressPo)>0)
+        if(addressMapper.addAddress(addressPo)>0) {
             return addressPo;
-        else
+        }
+        else {
             return null;
+        }
     }
 
     public Address getAddressById(Integer id) {

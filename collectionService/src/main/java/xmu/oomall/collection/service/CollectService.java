@@ -12,6 +12,9 @@ import xmu.oomall.collection.util.ResponseUtil;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Service
 public class CollectService {
 
@@ -35,9 +38,9 @@ public class CollectService {
 
     public Object listCollect(Integer id, Integer page, Integer limit) {
 
-        List<CollectItem> CollectList = collectDao.listcollect(id);
-        int pagecount = CollectList.size() / limit;
-        int remain = CollectList.size() % limit;
+        List<CollectItem> collectList = collectDao.listcollect(id);
+        int pagecount = collectList.size() / limit;
+        int remain = collectList.size() % limit;
         if (remain > 0) {
             pagecount++;
         }
@@ -47,12 +50,12 @@ public class CollectService {
         }
         List<CollectItem> subList = null;
         if (remain == 0) {
-            subList = CollectList.subList((page - 1) * limit, page * limit);
+            subList = collectList.subList((page - 1) * limit, page * limit);
         } else {
             if (page == pagecount) {
-                subList = CollectList.subList((page - 1) * limit, CollectList.size());
+                subList = collectList.subList((page - 1) * limit, collectList.size());
             } else {
-                subList = CollectList.subList((page - 1) * limit, page * limit);
+                subList = collectList.subList((page - 1) * limit, page * limit);
             }
         }
         if(subList.size()==0) {

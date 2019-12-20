@@ -11,6 +11,9 @@ import xmu.oomall.ad.util.ResponseUtil;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Service
 public class AdService {
 
@@ -59,7 +62,7 @@ public class AdService {
         }
     }
 
-    public  Object DeleteAd(Integer id){
+    public  Object deleteAd(Integer id){
         if(adDao.deleteAd(id)==0) {
             logger.debug("删除广告失败");
             return ResponseUtil.deleteFail();

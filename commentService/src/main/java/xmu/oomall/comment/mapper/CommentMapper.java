@@ -9,6 +9,9 @@ import xmu.oomall.comment.domain.User;
 
 import java.util.List;
 
+/**
+ * @author zhy
+ */
 @Mapper
 @Repository
 public interface CommentMapper {

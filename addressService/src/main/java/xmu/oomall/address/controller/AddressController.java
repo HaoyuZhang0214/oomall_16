@@ -18,9 +18,12 @@ import java.util.List;
  * 用户地址服务
 
  */
+
+/**
+ * @author zhy
+ */
 @RestController
 @RequestMapping("/addressService")
-//@Validated
 public class AddressController {
 
     private static final Logger logger = LoggerFactory.getLogger(AddressController.class);
@@ -58,11 +61,13 @@ public class AddressController {
             logger.debug("该地址是无效地址");
             return ResponseUtil.invalid();
         }
-        int page_count=addressList.size()/limit;
+        int pageCount =addressList.size()/limit;
         int remain=addressList.size()%limit;
-        if(remain>0)
-            page_count++;
-        if(page>page_count) {
+        if(remain>0) {
+            pageCount ++;
+        }
+
+        if(page>pageCount ) {
             logger.debug("参数不合法");
             return ResponseUtil.illegalParameter();
         }
@@ -70,7 +75,7 @@ public class AddressController {
             subList=addressList.subList((page-1)*limit,page*limit);
         }
         else{
-            if (page==page_count){
+            if (page==pageCount ){
                 subList=addressList.subList((page-1)*limit,addressList.size());
             }else{
                 subList=addressList.subList((page-1)*limit,page*limit);
@@ -103,8 +108,6 @@ public class AddressController {
         if (id != null && !"".equals(id)) {
             userId = Integer.valueOf(id);
         } else {
-            //出错
-//            return ResponseUtil.fail(581,"id丢失");
             logger.debug("未登录");
             return ResponseUtil.unlogin();
         }
@@ -112,18 +115,18 @@ public class AddressController {
             logger.debug("参数不合法");
             return ResponseUtil.illegalParameter();
         }
-//            return ResponseUtil.fail();
         List<Address> subList= new ArrayList<Address>();
         List<Address> addressList= addressService.getAllAddressById(userId);
         if(addressList.size()==0) {
             logger.debug("该地址是无效地址");
             return ResponseUtil.invalid();
         }
-        int page_count=addressList.size()/limit;
+        int pageCount =addressList.size()/limit;
         int remain=addressList.size()%limit;
-        if(remain>0)
-            page_count++;
-        if(page>page_count) {
+        if(remain>0) {
+            pageCount++;
+        }
+        if(page>pageCount) {
             logger.debug("参数不合法");
             return ResponseUtil.illegalParameter();
         }
@@ -131,7 +134,7 @@ public class AddressController {
             subList=addressList.subList((page-1)*limit,page*limit);
         }
         else{
-            if (page==page_count){
+            if (page==pageCount){
                 subList=addressList.subList((page-1)*limit,addressList.size());
             }else{
                 subList=addressList.subList((page-1)*limit,page*limit);
@@ -165,8 +168,10 @@ public class AddressController {
             logger.debug("该地址是无效地址");
             return ResponseUtil.invalid();
         }
-        else
+        else {
             return ResponseUtil.ok(address);
+        }
+
     }
 
 
@@ -192,8 +197,10 @@ public class AddressController {
             logger.debug("地址新增失败");
             return ResponseUtil.addFail();
         }
-        else
+        else {
             return ResponseUtil.ok(addressPo1);
+        }
+
     }
 
 
@@ -223,8 +230,10 @@ public class AddressController {
             logger.debug(("地址修改失败"));
             return ResponseUtil.updateFail();
         }
-        else
+        else {
             return ResponseUtil.ok(addressPo1);
+        }
+
     }
 
 

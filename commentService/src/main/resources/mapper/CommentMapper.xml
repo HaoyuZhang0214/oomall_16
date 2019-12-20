@@ -42,7 +42,7 @@
 
     <update id="updateComment" parameterType="xmu.oomall.comment.domain.CommentPo">
 
-        update oomall_comment set user_id=#{userId},content=#{content},statusCode=#{status},star=#{star},product_id=#{productId},gmt_modified=#{gmtModified} where id=#{id};
+        update oomall_comment set user_id=#{userId},content=#{content},status=#{statusCode},star=#{star},product_id=#{productId},gmt_modified=#{gmtModified} where id=#{id};
 
     </update>
 

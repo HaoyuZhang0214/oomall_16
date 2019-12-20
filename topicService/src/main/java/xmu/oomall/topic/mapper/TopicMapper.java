@@ -8,6 +8,9 @@ import xmu.oomall.topic.domain.TopicPo;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Mapper
 @Repository
 public interface TopicMapper {

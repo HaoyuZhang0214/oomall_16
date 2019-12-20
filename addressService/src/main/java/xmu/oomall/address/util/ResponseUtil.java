@@ -35,20 +35,21 @@ import java.util.Map;
  * <li> 7xx，管理后台后端业务错误码，
  * 具体见litemall-wx-api模块的WxResponseCode。
  * </ul>
+ * @author zhy
  */
 
 
 public class ResponseUtil {
 
     public static Object ok() {
-        Map<String, Object> obj = new HashMap<String, Object>();
+        Map<String, Object> obj = new HashMap<String, Object>(0);
         obj.put("errno", 0);
         obj.put("errmsg", "成功");
         return obj;
     }
 
     public static Object ok(Object data) {
-        Map<String, Object> obj = new HashMap<String, Object>();
+        Map<String, Object> obj = new HashMap<String, Object>(0);
         obj.put("errno", 0);
         obj.put("errmsg", "成功");
         obj.put("data", data);
@@ -56,14 +57,14 @@ public class ResponseUtil {
     }
 
     public static Object fail() {
-        Map<String, Object> obj = new HashMap<String, Object>();
+        Map<String, Object> obj = new HashMap<String, Object>(0);
         obj.put("errno", -1);
         obj.put("errmsg", "错误");
         return obj;
     }
 
     public static Object fail(int errno, String errmsg) {
-        Map<String, Object> obj = new HashMap<String, Object>();
+        Map<String, Object> obj = new HashMap<String, Object>(0);
         obj.put("errno", errno);
         obj.put("errmsg", errmsg);
         return obj;

@@ -9,25 +9,55 @@ import xmu.oomall.cart.domain.CartItemPo;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Service
 public interface CartService {
 
 
-
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public List<CartItemPo> listAllCartItems(@RequestParam Integer userId);
 
+    /**
+     *
+     * @param cartItem
+     * @return
+     */
     public CartItemPo addItem(@RequestBody CartItemPo cartItem);
 
+    /**
+     *
+     * @param cartItem
+     * @return
+     */
     public CartItemPo fastAddItem(@RequestBody CartItemPo cartItem);
 
+    /**
+     *
+     * @param id
+     * @param cartItem
+     * @return
+     */
     public CartItemPo updateItem(@RequestParam Integer id, @RequestBody CartItemPo cartItem);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Integer deleteItem(@RequestParam Integer id);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public CartItemPo cartItemInfo(@RequestParam Integer id);
 
-//    public Boolean ifExist(@RequestParam Integer id, @RequestParam Integer userId);
-
-//    public Boolean ifExistByUserId(@RequestParam Integer id);
 
 }

@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 /**
  * 用户收藏服务
+ * @author zhy
  */
 @RestController
 @RequestMapping("/collectionService")
@@ -66,7 +67,6 @@ public class CollectController {
      */
 
     @PostMapping ("/collections")
-   //@ApiOperation(value = "添加收藏 ")
     public Object add( @RequestBody CollectItemPo body) {
          body.setGmtCreate(LocalDateTime.now());
          body.setGmtModified(LocalDateTime.now());
@@ -75,14 +75,16 @@ public class CollectController {
              logger.debug("收藏新增失败");
              return ResponseUtil.addFail();
          }
-         else
+         else {
              return ResponseUtil.ok(collectItemPo);
+         }
     }
 
     @DeleteMapping("/collections/{id}")
     public Object update( @PathVariable Integer id) {
-        if(collectService.deleteCollectById(id)>0)
+        if(collectService.deleteCollectById(id)>0) {
             return ResponseUtil.ok();
+        }
         else {
             logger.debug("收藏删除失败");
             return ResponseUtil.deleteFail();

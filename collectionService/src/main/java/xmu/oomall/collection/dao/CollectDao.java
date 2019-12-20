@@ -11,16 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Repository
 public class CollectDao {
     @Autowired
     private CollectMapper collectMapper;
 
     public CollectItemPo addCollect(CollectItemPo collectItem){
-         if(collectMapper.addCollect(collectItem)>0)
+         if(collectMapper.addCollect(collectItem)>0) {
              return collectItem;
-         else
+         }
+         else {
              return null;
+         }
     }
 
     public  List<CollectItem> listcollect(Integer userId){
@@ -28,16 +33,15 @@ public class CollectDao {
         List<CollectItem>  collectItems=new ArrayList<CollectItem>();
                for(CollectItemPo collect:collectMapper.listCollectByCodition(userId)){
                    Integer goodsid=collect.getGoodsId();
-                   CollectItem A=new CollectItem();
-                   //goods.add(collectMapper.Goods(goodsid));
-                   A.setGoodsPo(collectMapper.Goods(goodsid));
-                   A.setGmtCreate(collect.getGmtCreate());
-                   A.setGmtModified(collect.getGmtModified());
-                   A.setGoodsId(collect.getGoodsId());
-                   A.setId(collect.getId());
-                   A.setUserId(collect.getUserId());
-                   if(A!=null) {
-                       collectItems.add(A);
+                   CollectItem a =new CollectItem();
+                   a.setGoodsPo(collectMapper.goods(goodsid));
+                   a.setGmtCreate(collect.getGmtCreate());
+                   a.setGmtModified(collect.getGmtModified());
+                   a.setGoodsId(collect.getGoodsId());
+                   a.setId(collect.getId());
+                   a.setUserId(collect.getUserId());
+                   if(a!=null) {
+                       collectItems.add(a);
                    }
                }
                return collectItems;

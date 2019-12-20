@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Repository
 public class CartDao {
 
@@ -31,48 +34,25 @@ public class CartDao {
             Integer num = cartItem1.getNumber();
             cartItem1.setNumber(num+cartItem.getNumber());
             cartItem1.setGmtModified(LocalDateTime.now());
-            if(cartMapper.updateItem(cartItem1)>0)
+            if(cartMapper.updateItem(cartItem1)>0) {
                 return cartItem1;
-            else
+            }
+            else {
                 return null;
+            }
+
         }
         cartItem.setBeCheck(false);
         cartItem.setGmtCreate(LocalDateTime.now());
         cartItem.setGmtModified(LocalDateTime.now());
-        if(cartMapper.addItem(cartItem)>0)
+        if(cartMapper.addItem(cartItem)>0) {
             return cartItem;
-        else
+        }
+        else {
             return null;
+        }
     }
 
-//    public Boolean ifExist(@RequestBody CartItem cartItem) {
-//        CartItem cartItem1 = new CartItem(cartMapper.searchItem(cartItem.getUserId(),cartItem.getProductId());
-//        if(cartItem.getProductId() == cartItem1.getProductId() && cartItem.getUserId() == cartItem1.getUserId()) {
-//            return true;
-//        }
-//        else {
-//            return false;
-//        }
-//    }
-
-
-//    public Boolean ifExist(@RequestParam Integer id, @RequestParam Integer userId) {
-//        if(cartMapper.cartItemInfoById(id,userId)==null) {
-//            return false;
-//        }
-//        else {
-//            return true;
-//        }
-//    }
-
-//    public Boolean ifExistByUserId(@RequestParam Integer userId) {
-//        if(cartMapper.cartItemInfoByUserId(userId)==null) {
-//            return false;
-//        }
-//        else {
-//            return true;
-//        }
-//    }
 
     public CartItemPo fastAddItem(@RequestBody CartItemPo cartItem) {
         cartMapper.fastAddItem(cartItem);
@@ -81,15 +61,18 @@ public class CartDao {
 
     public CartItemPo updateItem(@RequestBody CartItemPo cartItem) {
         CartItemPo cartItem1 = cartMapper.cartItemInfoById(cartItem.getId());
-        if(cartItem1==null)
+        if(cartItem1==null) {
             return null;
+        }
         Integer num = cartItem1.getNumber();
         cartItem1.setNumber(cartItem.getNumber());
         cartItem1.setGmtModified(LocalDateTime.now());
-        if(cartMapper.updateItem(cartItem1)>0)
+        if(cartMapper.updateItem(cartItem1)>0) {
             return cartItem1;
-        else
+        }
+        else {
             return null;
+        }
     }
 
     public Integer deleteItem(@RequestParam Integer id) {

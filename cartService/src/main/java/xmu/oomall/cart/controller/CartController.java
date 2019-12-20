@@ -17,6 +17,7 @@ import java.util.List;
 /**
 
  * 用户购物车服务
+ * @author zhy
 
  */
 
@@ -57,11 +58,12 @@ public class CartController {
             return ResponseUtil.unlogin();
         }
         List<CartItemPo> cartItemList= cartService.listAllCartItems(userId);
-        int page_count=cartItemList.size()/limit;
+        int pageCount =cartItemList.size()/limit;
         int remain=cartItemList.size()%limit;
-        if(remain>0)
-            page_count++;
-        if(page>page_count) {
+        if(remain>0) {
+            pageCount++;
+        }
+        if(page>pageCount) {
             logger.debug("参数不合法");
             return ResponseUtil.illegalParameter();
         }
@@ -69,7 +71,7 @@ public class CartController {
             cartItemList=cartItemList.subList((page-1)*limit,page*limit);
         }
         else{
-            if (page==page_count){
+            if (page==pageCount){
                 cartItemList=cartItemList.subList((page-1)*limit,cartItemList.size());
             }else{
                 cartItemList=cartItemList.subList((page-1)*limit,page*limit);
@@ -79,9 +81,9 @@ public class CartController {
             logger.debug("购物车明细不存在");
             return ResponseUtil.getFail();
         }
-        else
+        else {
             return ResponseUtil.ok(cartItemList);
-
+        }
     }
 
 
@@ -110,9 +112,9 @@ public class CartController {
             logger.debug("购物车明细不存在");
             return ResponseUtil.getFail();
         }
-        else
+        else {
             return ResponseUtil.ok(cartItemList);
-
+        }
     }
 
 
@@ -173,8 +175,10 @@ public class CartController {
             logger.debug("购物车明细新增失败");
             return ResponseUtil.addFail();
         }
-        else
+        else {
             return ResponseUtil.ok(cartItem1);
+        }
+
     }
 
 
@@ -223,8 +227,9 @@ public class CartController {
         }
         else {
             CartItemPo cartItem1 = cartService.updateItem(id,cartItem);
-            if(cartItem1!=null)
+            if(cartItem1!=null) {
                 return ResponseUtil.ok(cartItem1);
+            }
             else {
                 logger.debug("购物车明细修改失败");
                 return ResponseUtil.updateFail();

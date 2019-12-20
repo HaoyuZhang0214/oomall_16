@@ -1,11 +1,10 @@
-package xmu.oomall.cart.service.Impl;
+package xmu.oomall.cart.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import xmu.oomall.cart.dao.CartDao;
-import xmu.oomall.cart.domain.CartItem;
 import xmu.oomall.cart.domain.CartItemPo;
 import xmu.oomall.cart.mapper.CartMapper;
 import xmu.oomall.cart.service.CartService;
@@ -14,6 +13,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
+/**
+ * @author zhy
+ */
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -33,12 +35,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartItemPo addItem(@RequestBody CartItemPo cartItem) {
 
-//        if(cartDao.ifExist(cartItem)) {
-//            return cartDao.addNumber(cartItem.getNumber());
-//        }
-//        else {
             return cartDao.addItem(cartItem);
-//        }
     }
 
     @Override
