@@ -19,11 +19,11 @@
         <module>afterSaleService</module>
         <module>cartService</module>
         <module>addressService</module>
-        <module>ad</module>
         <module>collectionService</module>
         <module>commentService</module>
         <module>footprintService</module>
         <module>topicService</module>
+        <module>eurekaServer</module>
 
     </modules>
 
