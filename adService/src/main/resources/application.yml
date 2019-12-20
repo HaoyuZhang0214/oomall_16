@@ -4,7 +4,7 @@ spring:
   datasource:
     username: root
     password:
-    url: jdbc:mysql://localhost:3306/oomall?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/oomall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
   #domain对象的包

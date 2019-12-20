@@ -48,15 +48,23 @@ public class CartController {
                             @RequestParam(defaultValue = "1") Integer page,
                             @RequestParam(defaultValue = "10") Integer limit) {
 
-        Integer userId = 1;
-
+        String id = request.getParameter("id");
+        Integer userId = null;
+        if (id != null && !"".equals(id)) {
+            userId = Integer.valueOf(id);
+        } else {
+            logger.debug("未登录");
+            return ResponseUtil.unlogin();
+        }
         List<CartItemPo> cartItemList= cartService.listAllCartItems(userId);
         int page_count=cartItemList.size()/limit;
         int remain=cartItemList.size()%limit;
         if(remain>0)
             page_count++;
-        if(page>page_count)
-            return ResponseUtil.fail(402,"page值超限");
+        if(page>page_count) {
+            logger.debug("参数不合法");
+            return ResponseUtil.illegalParameter();
+        }
         if(remain==0) {
             cartItemList=cartItemList.subList((page-1)*limit,page*limit);
         }
@@ -67,8 +75,10 @@ public class CartController {
                 cartItemList=cartItemList.subList((page-1)*limit,page*limit);
             }
         }
-        if(cartItemList==null)
-            return ResponseUtil.fail(730,"购物车记录不存在");
+        if(cartItemList==null) {
+            logger.debug("购物车明细不存在");
+            return ResponseUtil.getFail();
+        }
         else
             return ResponseUtil.ok(cartItemList);
 
@@ -91,9 +101,15 @@ public class CartController {
 
     public Object getUserCart(@PathVariable Integer userId) {
 
+        if(userId<0) {
+            logger.debug("参数不合法");
+            return ResponseUtil.illegalParameter();
+        }
         List<CartItemPo> cartItemList= cartService.listAllCartItems(userId);
-        if(cartItemList==null)
-            return ResponseUtil.fail(730,"购物车记录不存在");
+        if(cartItemList==null) {
+            logger.debug("购物车明细不存在");
+            return ResponseUtil.getFail();
+        }
         else
             return ResponseUtil.ok(cartItemList);
 
@@ -153,11 +169,12 @@ public class CartController {
     public Object addItem(@RequestBody CartItemPo cartItem) {
 
         CartItemPo cartItem1 = cartService.addItem(cartItem);
-        if(cartItem1==null)
-            return ResponseUtil.fail(731,"购物车操作失败");
+        if(cartItem1==null) {
+            logger.debug("购物车明细新增失败");
+            return ResponseUtil.addFail();
+        }
         else
             return ResponseUtil.ok(cartItem1);
-
     }
 
 
@@ -177,7 +194,7 @@ public class CartController {
     @PostMapping("/fastAddCartItems")
     public Object fastAddCartItems(@RequestBody CartItemPo cartItem) {
 
-        return cartService.fastAddItem(cartItem);
+        return ResponseUtil.ok(cartService.fastAddItem(cartItem));
 
     }
 
@@ -200,14 +217,18 @@ public class CartController {
 
     public Object updateItem(@PathVariable Integer id,@RequestBody CartItemPo cartItem) {
 
-        if(id<0)
-            return ResponseUtil.badArgumentValue();
+        if(id<0) {
+            logger.debug("参数不合法");
+            return ResponseUtil.illegalParameter();
+        }
         else {
             CartItemPo cartItem1 = cartService.updateItem(id,cartItem);
             if(cartItem1!=null)
                 return ResponseUtil.ok(cartItem1);
-            else
-                return ResponseUtil.fail(731,"购物车操作失败");
+            else {
+                logger.debug("购物车明细修改失败");
+                return ResponseUtil.updateFail();
+            }
         }
 
     }
@@ -231,13 +252,16 @@ public class CartController {
 
     public Object deleteItem(@PathVariable Integer id) {
 
-        if(id<0)
-            return ResponseUtil.badArgumentValue();
+        if(id<0) {
+            logger.debug("参数不合法");
+            return ResponseUtil.illegalParameter();
+        }
         if( cartService.deleteItem(id)>0) {
             return ResponseUtil.ok();
         }
         else {
-            return ResponseUtil.fail(731,"购物车操作失败");
+            logger.debug("购物车明细删除失败");
+            return ResponseUtil.deleteFail();
         }
 
     }

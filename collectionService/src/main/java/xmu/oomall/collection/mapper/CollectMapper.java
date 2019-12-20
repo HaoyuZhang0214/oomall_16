@@ -19,7 +19,7 @@ public interface CollectMapper {
      * @param
      * @return id
      */
-    void addCollect(CollectItemPo collectItem);
+    Integer addCollect(CollectItemPo collectItem);
 
     Integer deleteCollectById(Integer id);
 

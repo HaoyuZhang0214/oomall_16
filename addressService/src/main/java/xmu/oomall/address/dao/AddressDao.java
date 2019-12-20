@@ -9,6 +9,7 @@ import xmu.oomall.address.domain.AddressPo;
 import xmu.oomall.address.mapper.AddressMapper;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -40,7 +41,7 @@ public class AddressDao {
 
     public List<Address> getAllUserAddress(@RequestParam Integer userId, @RequestParam String name) {
         List<AddressPo> addressPoList = addressMapper.getAllUserAddress(userId, name);
-        List<Address> addresses = null;
+        List<Address> addresses = new ArrayList<Address>();
         for(AddressPo addressPo: addressPoList) {
             Address address = toAddress(addressPo);
             addresses.add(address);

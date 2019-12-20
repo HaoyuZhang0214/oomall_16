@@ -18,6 +18,17 @@
         <java.version>11</java.version>
     </properties>
 
+    <modules>
+        <module>topicService</module>
+        <module>footprintService</module>
+        <module>commentService</module>
+        <module>collectionService</module>
+        <module>cartService</module>
+        <module>afterSaleService</module>
+        <module>adService</module>
+        <module></module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

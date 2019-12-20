@@ -3,6 +3,8 @@ package和import需要根据项目导入
  */
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.collection.domain.CollectItem;
@@ -20,6 +22,9 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/collectionService")
 public class CollectController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CollectController.class);
+
     @Autowired
     private CollectService collectService ;
 
@@ -39,7 +44,14 @@ public class CollectController {
                        @RequestParam(defaultValue = "10") Integer limit
                                   ){
 
-        Integer userId = 1;
+        String id = request.getParameter("id");
+        Integer userId = null;
+        if (id != null && !"".equals(id)) {
+            userId = Integer.valueOf(id);
+        } else {
+            logger.debug("未登录");
+            return ResponseUtil.unlogin();
+        }
         return collectService.listCollect(userId,page,limit);
     }
 
@@ -58,14 +70,22 @@ public class CollectController {
     public Object add( @RequestBody CollectItemPo body) {
          body.setGmtCreate(LocalDateTime.now());
          body.setGmtModified(LocalDateTime.now());
-         return ResponseUtil.ok(collectService.addCollect(body));
+         CollectItemPo collectItemPo = collectService.addCollect(body);
+         if(collectItemPo==null) {
+             logger.debug("收藏新增失败");
+             return ResponseUtil.addFail();
+         }
+         else
+             return ResponseUtil.ok(collectItemPo);
     }
 
     @DeleteMapping("/collections/{id}")
     public Object update( @PathVariable Integer id) {
         if(collectService.deleteCollectById(id)>0)
             return ResponseUtil.ok();
-        else
-            return ResponseUtil.fail();
+        else {
+            logger.debug("收藏删除失败");
+            return ResponseUtil.deleteFail();
+        }
     }
 }

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/adService")
 public class AdController {
+
     @Autowired
     private AdService adService;
 

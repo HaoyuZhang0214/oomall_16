@@ -1,5 +1,7 @@
 package xmu.oomall.topic.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.topic.dao.TopicDao;
@@ -7,11 +9,15 @@ import xmu.oomall.topic.domain.Topic;
 import xmu.oomall.topic.domain.TopicPo;
 import xmu.oomall.topic.util.ResponseUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 public class TopicService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TopicService.class);
+
     @Autowired
     private TopicDao topicDao;
 
@@ -23,7 +29,7 @@ public class TopicService {
             pagecount++;
         }
         if(page>pagecount) return null;
-        List<Topic> subList = null;
+        List<Topic> subList = new ArrayList<Topic>();
         if (remain == 0) {
             subList = CollectList.subList((page - 1) * limit, page * limit);
         } else {
@@ -32,6 +38,9 @@ public class TopicService {
             } else {
                 subList = CollectList.subList((page - 1) * limit, page * limit);
             }
+        }
+        if(subList.size()==0) {
+            logger.debug("");
         }
         return ResponseUtil.ok(subList);
     }

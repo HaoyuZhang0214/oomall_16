@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface AdMapper {
+
         List<Ad> getAds();
 
         int addAd(Ad ad);

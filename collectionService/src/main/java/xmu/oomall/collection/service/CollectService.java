@@ -1,5 +1,7 @@
 package xmu.oomall.collection.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.oomall.collection.dao.CollectDao;
@@ -12,6 +14,9 @@ import java.util.List;
 
 @Service
 public class CollectService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CollectService.class);
+
     @Autowired
     private CollectDao collectDao;
 
@@ -33,14 +38,12 @@ public class CollectService {
         List<CollectItem> CollectList = collectDao.listcollect(id);
         int pagecount = CollectList.size() / limit;
         int remain = CollectList.size() % limit;
-        if (id == null) {
-            return ResponseUtil.unlogin();
-        }
         if (remain > 0) {
             pagecount++;
         }
         if (page > pagecount) {
-            return ResponseUtil.fail(402, "page值超过界限");
+            logger.debug("参数不合法");
+            return ResponseUtil.illegalParameter();
         }
         List<CollectItem> subList = null;
         if (remain == 0) {
@@ -51,6 +54,10 @@ public class CollectService {
             } else {
                 subList = CollectList.subList((page - 1) * limit, page * limit);
             }
+        }
+        if(subList.size()==0) {
+            logger.debug("收藏不存在");
+            return ResponseUtil.getFail();
         }
         return ResponseUtil.ok(subList);
     }

@@ -23,7 +23,7 @@
 
     </select>
 
-    <insert id="addAddress" parameterType="xmu.oomall.address.domain.AddressPo">
+    <insert id="addAddress" parameterType="xmu.oomall.address.domain.AddressPo" useGeneratedKeys="true" keyProperty="id">
 
         insert into oomall_address;
 
@@ -31,7 +31,7 @@
 
     <update id="editAddress" parameterType="xmu.oomall.address.domain.AddressPo">
 
-        update oomall_address set gmt_modified=#{gmtModified},user_id=#{userId},city_id=#{cityId},province_id=#{provinceId},county_id=#{countyId}, adddress_detail=#{addressDetail}, mobile=#{mobile}, postal_code=#{postalCode},consignee=#{consignee}, is_default=#{beDefault} where id=#{id};
+        update oomall_address set gmt_modified=#{gmtModified},user_id=#{userId},city_id=#{cityId},province_id=#{provinceId},county_id=#{countyId}, address_detail=#{addressDetail}, mobile=#{mobile}, postal_code=#{postalCode},consignee=#{consignee}, is_default=#{beDefault} where id=#{id};
 
     </update>
 

@@ -17,12 +17,14 @@ public class CollectDao {
     private CollectMapper collectMapper;
 
     public CollectItemPo addCollect(CollectItemPo collectItem){
-         collectMapper.addCollect(collectItem);
-         return collectItem;
+         if(collectMapper.addCollect(collectItem)>0)
+             return collectItem;
+         else
+             return null;
     }
 
     public  List<CollectItem> listcollect(Integer userId){
-        List<GoodsPo> goods=null ;
+        List<GoodsPo> goods= new ArrayList<GoodsPo>() ;
         List<CollectItem>  collectItems=new ArrayList<CollectItem>();
                for(CollectItemPo collect:collectMapper.listCollectByCodition(userId)){
                    Integer goodsid=collect.getGoodsId();
