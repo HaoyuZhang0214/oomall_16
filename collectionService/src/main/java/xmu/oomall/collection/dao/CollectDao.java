@@ -10,6 +10,7 @@ import xmu.oomall.collection.mapper.CollectMapper;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Repository
 public class CollectDao {
     @Autowired

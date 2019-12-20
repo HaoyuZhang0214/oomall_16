@@ -3,6 +3,7 @@
 <mapper namespace="xmu.oomall.topic.mapper.TopicMapper">
 
 
+
     <select id="getTopic" resultType="xmu.oomall.topic.domain.TopicPo">
         select * from oomall_topic where is_deleted=false;
     </select>

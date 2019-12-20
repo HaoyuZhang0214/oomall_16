@@ -8,6 +8,7 @@ import xmu.oomall.ad.util.ResponseUtil;
 
 import java.util.List;
 
+
 @Service
 public class AdService {
     @Autowired

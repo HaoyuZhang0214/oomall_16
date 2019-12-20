@@ -1,6 +1,5 @@
 package xmu.oomall.topic.controller;
 
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xmu.oomall.topic.domain.Topic;

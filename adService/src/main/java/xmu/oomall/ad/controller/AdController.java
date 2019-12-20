@@ -7,6 +7,7 @@ import xmu.oomall.ad.service.AdService;
 
 import java.time.LocalDateTime;
 
+
 @RestController
 @RequestMapping("/adService")
 public class AdController {

@@ -13,6 +13,7 @@ import java.util.List;
  * @Description:团购规则对象
  * @Data:Created in 14:50 2019/12/11
  **/
+
 @Getter
 @Setter
 @ToString

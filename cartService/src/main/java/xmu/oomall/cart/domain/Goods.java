@@ -12,6 +12,7 @@ import java.util.List;
  * @Description:商品对象
  * @Data:Created in 14:50 2019/12/11
  **/
+
 @Getter
 @Setter
 @ToString

@@ -6,6 +6,7 @@ import xmu.oomall.ad.domain.Ad;
 
 import java.util.List;
 
+
 @Mapper
 @Repository
 public interface AdMapper {

@@ -9,6 +9,7 @@ import xmu.oomall.collection.util.ResponseUtil;
 
 import java.util.List;
 
+
 @Service
 public class CollectService {
     @Autowired

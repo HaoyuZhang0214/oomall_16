@@ -8,6 +8,7 @@ import xmu.oomall.cart.domain.CartItemPo;
 
 import java.util.List;
 
+
 @Mapper
 @Repository
 public interface CartMapper {

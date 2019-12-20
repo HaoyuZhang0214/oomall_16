@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xmu.good.oomall.mapper.FootPrintMapper">
+
+
+    <select id="findFootPrintItemByUserIdAndGoodsId" resultType="FootPrintItemPo">
+        select * from oomall_footprint_item
+        where user_id=#{userId} and goods_id=#{goodsId}
+        order by birth_time desc
+        limit ${(page-1)*limit},${limit}
+    </select>
+
+    <select id="findFootPrintItemByUserId" resultType="FootPrintItemPo">
+        select * from oomall_footprint_item
+        where user_id=#{userId}
+        order by birth_time desc
+        limit ${(page-1)*limit},${limit}
+    </select>
+
+    <delete id="deleteFootPrintItemByUserIdAndId" >
+        delete from oomall_footprint_item
+        where user_id=#{userId} and id=#{id}
+    </delete>
+
+    <insert id="addFootPrintItem" parameterType="FootPrintItem" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into oomall_footprint_item(gmt_create, birth_time, user_id, goods_id)
+        value (#{gmtCreate},#{birthTime},#{userId},#{goodsId})
+    </insert>
+</mapper>

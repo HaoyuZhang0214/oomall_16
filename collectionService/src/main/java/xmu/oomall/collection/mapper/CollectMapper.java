@@ -7,6 +7,7 @@ import xmu.oomall.collection.domain.GoodsPo;
 
 import java.util.List;
 
+
 @Mapper
 @Repository
 public interface CollectMapper {

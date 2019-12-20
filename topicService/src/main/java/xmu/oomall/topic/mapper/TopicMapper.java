@@ -7,6 +7,7 @@ import xmu.oomall.topic.domain.TopicPo;
 
 import java.util.List;
 
+
 @Mapper
 @Repository
 public interface TopicMapper {

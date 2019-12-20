@@ -8,6 +8,7 @@ import xmu.oomall.ad.util.ResponseUtil;
 
 import java.util.List;
 
+
 @Repository
 public class AdDao {
     @Autowired

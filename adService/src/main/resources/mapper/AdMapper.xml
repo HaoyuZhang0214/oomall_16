@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xmu.oomall.ad.mapper.AdMapper">
 
-        <select id="getAds" resultType="xmu.oomall.ad.domain.Ad">
+    <select id="getAds" resultType="xmu.oomall.ad.domain.Ad">
             select * from oomall_ad where is_deleted=false;
-        </select>
+    </select>
 
     <select id="adGetAds" resultType="xmu.oomall.ad.domain.Ad" parameterType="xmu.oomall.ad.domain.Ad">
         select * from oomall_ad where name =#{name} and content=#{content};

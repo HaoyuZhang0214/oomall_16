@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @Description:团购规则信息
  * @Data:Created in 14:50 2019/12/11
  **/
+
 @Getter
 @Setter
 @ToString

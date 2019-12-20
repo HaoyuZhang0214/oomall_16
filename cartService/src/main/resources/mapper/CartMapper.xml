@@ -6,6 +6,7 @@
 
 
 
+
     <insert id="addItem" parameterType="xmu.oomall.cart.domain.CartItemPo">
 
         insert into oomall_cart_item(id,user_id,product_id,is_check,number,gmt_create,gmt_modified) values(#{id},#{userId},#{productId},#{beCheck},#{number},#{gmtCreate},#{gmtModified});
